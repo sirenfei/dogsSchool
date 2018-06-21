@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,9 +42,10 @@ public class DogSchoolController {
     @ApiOperation(value = "Register a dog api",
             notes = "if success return Success and registered information else return failed",
             httpMethod = "POST",
+            produces = MediaType.APPLICATION_JSON_VALUE,
             response = String.class)
     @ApiResponse(code = HttpServletResponse.SC_OK, message = "Success")
-    public Results<Dogs> register(@ApiParam(value="dog name",required= true) String dogName) {
+    public Results<Dogs> register(@ApiParam(name = "dogName",value="dogName",required= true) @RequestParam("dogName")String dogName) {
         logger.info("register dogName = {}", dogName);
         
          if(StringUtils.isBlank(dogName) )
@@ -85,7 +90,7 @@ public class DogSchoolController {
 
     }
 
-    @RequestMapping("/deregister/{id}")
+    @GetMapping("/deregister/{id}")
     @ApiOperation(value = "deregister a dog",
     notes = "deregister a dog by dog id if the dog exist and return OK,Otherwise,  return Failed",
     response = String.class)
@@ -98,9 +103,9 @@ public class DogSchoolController {
     @RequestMapping("/search")
     @ApiOperation(value = "filter dogs api",
     notes = "filter dogs with a partial match of more than 3 characters and less than 255 characters when listing Otherwise, return []",
-    response = List.class)
+    produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Dogs> search(@ApiParam(value="dog name",required= true) String dogName) {
+    public List<Dogs> search(@ApiParam(value="dog name",required= true) @RequestParam("dogName")String dogName) {
         logger.info("search name = {}", dogName);
         if(null == dogName || (dogName.length() <3 && dogName.length() >255))
                 return Lists.newArrayList();

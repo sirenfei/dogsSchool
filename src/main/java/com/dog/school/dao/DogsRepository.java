@@ -14,5 +14,7 @@ public interface DogsRepository extends JpaRepository<Dogs, Integer>{
     
   @Query("SELECT d.id,d.name FROM Dogs d WHERE d.name like %:name%")
   List<Dogs> searchDogs(@Param("name") String name);
+  
+  List<Dogs> findByNameContaining(@Param("name") String name);
     
 }

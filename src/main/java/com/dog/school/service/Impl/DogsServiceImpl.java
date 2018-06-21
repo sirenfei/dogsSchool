@@ -29,7 +29,8 @@ public class DogsServiceImpl implements DogsService {
         {
             return Lists.newArrayList();
         }
-        return dogsRepository.searchDogs(name);
+        List<Dogs> result = dogsRepository.findByNameContaining(name);
+        return result;
     }
 
     @Override
