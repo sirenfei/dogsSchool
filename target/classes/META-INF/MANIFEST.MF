@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Richard dogs
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: xueyongfei01
+Implementation-Vendor-Id: com.dog.school
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/dogs-school
+Created-By: Maven Integration for Eclipse
+
