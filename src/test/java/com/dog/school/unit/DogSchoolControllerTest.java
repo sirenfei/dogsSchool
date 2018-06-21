@@ -43,7 +43,7 @@ class DogSchoolControllerTest {
     @MockBean
     private DogsService dogsService;
     
-    List<Dogs> list = Lists.newArrayList(new Dogs("little 1"), new Dogs("little 2"), new Dogs("little 3"));;
+    List<Dogs> list = Lists.newArrayList(new Dogs("little 1"), new Dogs("little 2"), new Dogs("little 3"));
     List<Dogs> none = Lists.newArrayList();
     Optional<Dogs> singleDog = Optional.of(new Dogs("littleDog"));
     

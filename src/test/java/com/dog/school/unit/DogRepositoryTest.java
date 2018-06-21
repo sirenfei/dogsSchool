@@ -3,6 +3,7 @@ package com.dog.school.unit;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.dog.school.dao.DogsRepository;
@@ -46,16 +48,15 @@ class DogRepositoryTest {
     @Test
     void searchDogsTest() {
         // when
-        List<Dogs> found = dogsRepository.searchDogs(alex.getName());
-        List<Dogs> notFound = dogsRepository.searchDogs(alex.getName() + alex.getName());
-        List<Dogs> emptyParam = dogsRepository.searchDogs(null);
+        List<Dogs> found = dogsRepository.findByNameContaining(alex.getName());
+        List<Dogs> notFound = dogsRepository.findByNameContaining(alex.getName() + alex.getName());
 
         List<Dogs> none = Lists.newArrayList();
         assertAll("searchResults", 
                 () -> assertNotNull(found), 
                 () -> assertTrue(found.size() > 0),
                 () -> assertEquals(none, notFound),
-                () -> assertEquals(none, emptyParam)
+                () -> assertThrows(InvalidDataAccessApiUsageException.class, () -> {dogsRepository.findByNameContaining(null);}, "parameter must no be null")
                 );
     }
 

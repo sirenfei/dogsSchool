@@ -56,7 +56,7 @@ class DogServiceTest {
         
         Mockito.when(dogsRepository.findAll()).thenReturn(list);
         
-        Mockito.when(dogsRepository.searchDogs(LITTLE)).thenReturn(list);
+        Mockito.when(dogsRepository.findByNameContaining(LITTLE)).thenReturn(list);
         
         Mockito.when(dogsRepository.findById(ArgumentMatchers.anyInt())).thenReturn(singleDog);
         
