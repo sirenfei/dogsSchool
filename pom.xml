@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dog.school</groupId>
 	<artifactId>dogs-school</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Richard dogs</name>
 
@@ -87,7 +87,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-runner</artifactId>
@@ -100,7 +100,7 @@
 				</exclusion>
 			</exclusions>
  -->		</dependency>
-		
+
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
 		    <artifactId>junit-jupiter-params</artifactId>
@@ -132,19 +132,19 @@
 		    <groupId>org.mockito</groupId>
 		    <artifactId>mockito-core</artifactId>
 		</dependency>
-		
+
 
 	</dependencies>
 
 	<build>
-	
+
 	<resources>
    <resource>
       <directory>src/main/resources</directory>
       <filtering>true</filtering>
    </resource>
 </resources>
-	
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
